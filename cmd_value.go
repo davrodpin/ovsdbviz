@@ -33,10 +33,6 @@ func (output *outputValue) Set(value string) error {
 		return errors.New("Output File Path Variable already set")
 	}
 
-	if _, err := os.Stat(value); err == nil {
-		return fmt.Errorf("Output File %s already exists", value)
-	}
-
 	*output = outputValue(value)
 
 	return nil

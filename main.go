@@ -55,10 +55,6 @@ func init() {
 	}
 }
 
-// TODO: Filter graph by source table (show part of the diagram)
-// TODO: Show only attributes that have references to another table
-// TODO: Add support to retrieve schema through TCP connection (tcp:127.0.0.1:6644)
-// TODO: Show only tables with no column names
 func main() {
 
 	schema, err := ovsdb.NewDatabaseSchema(schemaPath.String())

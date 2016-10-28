@@ -33,9 +33,19 @@ func (database DatabaseSchema) OrderedColumns() map[string][]string {
 type TableSchema struct {
 	Columns     map[string]ColumnSchema `json:"columns"`
 	ColumnOrder []string
-	MaxRows     int        `json:"maxrows,omitempty"`
-	IsRoot      bool       `json:"isRoot,omitempty"`
-	Indexes     [][]string `json:"indexes,omitempty"`
+	MaxRows     int      `json:"maxrows,omitempty"`
+	IsRoot      bool     `json:"isRoot,omitempty"`
+	Indexes     []string `json:"indexes,omitempty"`
+}
+
+func (table TableSchema) IsIndex(columnName string) bool {
+	for _, v := range table.Indexes {
+		if columnName == v {
+			return true
+		}
+	}
+
+	return false
 }
 
 type ColumnSchema struct {

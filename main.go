@@ -14,18 +14,24 @@ const (
 	tableBackgroundColor = "turquoise1"
 )
 
-func CreateLabel(columns []string) string {
-	var label []string
+func CreateLabel(table ovsdb.TableSchema, columns []string) string {
+	var labels []string
+
 	for index, columnName := range columns {
 		tableBgColor := "transparent"
+		label := columnName
 		if index == 0 {
 			tableBgColor = tableBackgroundColor
 		}
 
-		label = append(label, fmt.Sprintf(tableAttrRow, index, tableBgColor, columnName))
+		if table.IsIndex(columnName) {
+			label = fmt.Sprintf("%s (index)", columnName)
+		}
+
+		labels = append(labels, fmt.Sprintf(tableAttrRow, index, tableBgColor, label))
 	}
 
-	return strings.Join(label, "")
+	return strings.Join(labels, "")
 }
 
 func GetPortIndex(columns []string, column string) int {
@@ -70,7 +76,7 @@ func main() {
 
 	// NODES
 	for tableName, columnOrder := range tableColumnOrder {
-		label := CreateLabel(columnOrder)
+		label := CreateLabel(schema.Tables[tableName], columnOrder)
 		nodeAttrs := make(map[string]string)
 		nodeAttrs["shape"] = "none"
 		nodeAttrs["label"] = fmt.Sprintf(`<<table border="0" cellspacing="0">%s</table>>`, label)

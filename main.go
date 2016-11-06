@@ -22,10 +22,13 @@ func CreateLabel(table ovsdb.TableSchema, columns []string) string {
 		label := columnName
 		if index == 0 {
 			tableBgColor = tableBackgroundColor
+			if table.IsRoot {
+				label = fmt.Sprintf("%s (root)", label)
+			}
 		}
 
 		if table.IsIndex(columnName) {
-			label = fmt.Sprintf("%s (index)", columnName)
+			label = fmt.Sprintf("%s (index)", label)
 		}
 
 		labels = append(labels, fmt.Sprintf(tableAttrRow, index, tableBgColor, label))

@@ -3,10 +3,11 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/davrodpin/ovsdbviz/graphviz"
-	"github.com/davrodpin/ovsdbviz/ovsdb"
 	"os"
 	"strings"
+
+	"github.com/davrodpin/ovsdbviz/graphviz"
+	"github.com/davrodpin/ovsdbviz/ovsdb"
 )
 
 const (

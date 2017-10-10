@@ -3,9 +3,10 @@
 ## How to build and run
 
 ```
-$ cd $GOPATH
-$ go get github.com/awalterschulze/gographviz
-$ cd ./src/github.com/davrodpin/ovsdbviz # you have to clone or go get it
+$ cd $GOPATH/src
+$ mkdir -p github.com/davrodpin && cd github.com/davrodpin
+$ git clone https://github.com/davrodpin/ovsdbviz.git
+$ cd ovsdbviz
 $ go install
 $ ovsdbviz -schema=./examplesvswitch.ovsschema -out=/tmp/ovsdb.dot
 $ brew install graphviz

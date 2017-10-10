@@ -2,8 +2,8 @@ package graphviz
 
 import (
 	"fmt"
+
 	"github.com/awalterschulze/gographviz"
-	"github.com/awalterschulze/gographviz/parser"
 )
 
 const DiGraphTemplate = "digraph %s { }"
@@ -26,7 +26,7 @@ func (g Graph) String() string {
 }
 
 func NewGraph() *Graph {
-	graphAst, _ := parser.ParseString(fmt.Sprintf(DiGraphTemplate, GraphID))
+	graphAst, _ := gographviz.ParseString(fmt.Sprintf(DiGraphTemplate, GraphID))
 	graph := gographviz.NewGraph()
 	gographviz.Analyse(graphAst, graph)
 
